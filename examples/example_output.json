@@ -1,0 +1,77 @@
+{
+  "case_id": "DEMO-NOT-A-REAL-CASE",
+  "status": "success",
+  "note": "示意输出，非真实案例结果。示例中的断言与数值均为虚构，不代表任何真实论文结论或 benchmark 分数。",
+  "artifact": {
+    "nanopublications": [
+      {
+        "claim_id": "A1",
+        "claim": "（示意）方法 A 在数据集 D 上的准确率为 90%。",
+        "subject": "方法 A",
+        "predicate": "achieves",
+        "object": "在数据集 D 上准确率 90%",
+        "evidence": {
+          "text": "（示意）在数据集 D 上，方法 A 的准确率为 90%",
+          "location": "para-7",
+          "evidence_type": "direct",
+          "status": "supported"
+        },
+        "provenance": {
+          "paper_id": "10.xxxx/demo-paper",
+          "authors": ["A. Author", "B. Author"],
+          "year": "2024",
+          "version": "v1",
+          "data_source": "material.json#para-7",
+          "identifier": "10.xxxx/demo-paper#A1"
+        },
+        "confidence": "high",
+        "confidence_basis": "证据逐字可查，位置精确到段落，来源元数据齐全"
+      },
+      {
+        "claim_id": "A2",
+        "claim": "（示意）在数据集 D 上方法 A 显著优于基线 B，且该结论仅适用于小样本场景。",
+        "subject": "方法 A",
+        "predicate": "outperforms",
+        "object": "基线 B（仅小样本场景）",
+        "evidence": {
+          "text": "（示意）显著优于基线 B；该结论仅适用于小样本场景",
+          "location": "para-7",
+          "evidence_type": "direct",
+          "status": "supported"
+        },
+        "provenance": {
+          "paper_id": "10.xxxx/demo-paper",
+          "authors": ["A. Author", "B. Author"],
+          "year": "2024",
+          "version": "v1",
+          "data_source": "material.json#para-7",
+          "identifier": "10.xxxx/demo-paper#A2"
+        },
+        "confidence": "medium",
+        "confidence_basis": "显著性判据未在段落给出，保留限定词，进人工复核"
+      }
+    ]
+  },
+  "claim_evidence_map": [
+    {"claim_id": "A1", "evidence_location": "para-7", "evidence_type": "direct", "sufficient": true},
+    {"claim_id": "A2", "evidence_location": "para-7", "evidence_type": "direct", "sufficient": true}
+  ],
+  "provenance_chain": [
+    {"claim_id": "A1", "paper_id": "10.xxxx/demo-paper", "authors": ["A. Author", "B. Author"], "year": "2024", "version": "v1", "identifier": "10.xxxx/demo-paper#A1"},
+    {"claim_id": "A2", "paper_id": "10.xxxx/demo-paper", "authors": ["A. Author", "B. Author"], "year": "2024", "version": "v1", "identifier": "10.xxxx/demo-paper#A2"}
+  ],
+  "quality_check": [
+    {"claim_id": "A1", "check": "claims_atomic", "result": "pass", "detail": "单命题"},
+    {"claim_id": "A1", "check": "evidence_minimal_sufficient", "result": "pass", "detail": "最短支撑句"},
+    {"claim_id": "A2", "check": "relation_direction", "result": "pass", "detail": "A 优于 B，方向正确"}
+  ],
+  "uncertainties": ["（示意）显著性统计判据未在给定段落中提供"],
+  "human_review_items": ["（示意）A2 的显著性结论建议人工核对原文统计量"],
+  "change_log": [],
+  "self_check": {
+    "claims_atomic": true,
+    "evidence_bound_and_located": true,
+    "provenance_complete": true,
+    "schema_parseable": true
+  }
+}
