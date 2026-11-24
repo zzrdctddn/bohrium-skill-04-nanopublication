@@ -1,0 +1,18 @@
+{
+  "case_id": "DEMO-NOT-A-REAL-CASE",
+  "note": "以下为演示接口的虚构示例，非官方测试案例，不构成正式答案。",
+  "task": "把给定结论段落拆成原子断言，为每条断言绑定最小充分证据与来源，输出结构化 nanopublication",
+  "params": {
+    "serialize_as": "json",
+    "schema": "nanopub_fields.md",
+    "language": "zh"
+  },
+  "material": "（示意段落）在数据集 D 上，方法 A 的准确率为 90%，显著优于基线 B；该结论仅适用于小样本场景。",
+  "source": {
+    "paper_id": "10.xxxx/demo-paper",
+    "authors": ["A. Author", "B. Author"],
+    "year": "2024",
+    "version": "v1",
+    "data_source": "material.json#para-7"
+  }
+}
