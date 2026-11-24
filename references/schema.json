@@ -1,0 +1,79 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "nanopub-claim-evidence-binder result.json",
+  "type": "object",
+  "required": [
+    "case_id",
+    "status",
+    "artifact",
+    "self_check"
+  ],
+  "properties": {
+    "case_id": {
+      "type": "string"
+    },
+    "status": {
+      "enum": ["success", "partial", "blocked"]
+    },
+    "artifact": {
+      "type": "object",
+      "required": ["nanopublications"],
+      "properties": {
+        "nanopublications": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["claim_id", "claim", "subject", "predicate", "object", "evidence", "provenance", "confidence"],
+            "properties": {
+              "claim_id": {"type": "string"},
+              "claim": {"type": "string"},
+              "subject": {"type": "string"},
+              "predicate": {"type": "string"},
+              "object": {"type": "string"},
+              "evidence": {
+                "type": "object",
+                "required": ["text", "location", "evidence_type", "status"],
+                "properties": {
+                  "text": {"type": "string"},
+                  "location": {"type": "string"},
+                  "evidence_type": {"enum": ["direct", "indirect"]},
+                  "status": {"enum": ["supported", "unsupported"]}
+                }
+              },
+              "provenance": {
+                "type": "object",
+                "required": ["paper_id", "authors", "year", "identifier"],
+                "properties": {
+                  "paper_id": {"type": "string"},
+                  "authors": {"type": "array", "items": {"type": "string"}},
+                  "year": {"type": "string"},
+                  "version": {"type": "string"},
+                  "data_source": {"type": "string"},
+                  "identifier": {"type": "string"}
+                }
+              },
+              "confidence": {"enum": ["high", "medium", "low"]},
+              "confidence_basis": {"type": "string"}
+            }
+          }
+        }
+      }
+    },
+    "claim_evidence_map": {"type": "array"},
+    "provenance_chain": {"type": "array"},
+    "quality_check": {"type": "array"},
+    "uncertainties": {"type": "array", "items": {"type": "string"}},
+    "human_review_items": {"type": "array", "items": {"type": "string"}},
+    "change_log": {"type": "array"},
+    "self_check": {
+      "type": "object",
+      "required": ["claims_atomic", "evidence_bound_and_located", "provenance_complete", "schema_parseable"],
+      "properties": {
+        "claims_atomic": {"type": "boolean"},
+        "evidence_bound_and_located": {"type": "boolean"},
+        "provenance_complete": {"type": "boolean"},
+        "schema_parseable": {"type": "boolean"}
+      }
+    }
+  }
+}
